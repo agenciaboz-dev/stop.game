@@ -18,15 +18,16 @@ html {
 }
 
 body {
-    overflow-x: hidden;
+    overflow: hidden;
     height: 100%;
+    background-image: url("/src/assets/background/background.jpg");
+    background-size: cover; /* This scales the background image to cover the entire body */
+    background-repeat: round;
 }
 
 #root {
     height: 100%;
-    background-image: url("/src/assets/background/background.jpg");
-    background-size: contain;
-    display: flex;
+    box-sizing: border-box;
 }
 
 section {
