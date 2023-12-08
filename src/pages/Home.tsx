@@ -1,12 +1,15 @@
-import { Box, Button } from "@mui/material"
+import { Box } from "@mui/material"
 import React from "react"
 import logo from "../assets/logo/logo.png"
 import stop from "../assets/logo/stop.png"
-import { colors } from "../style/colors"
+import { ButtonStop } from "../components/ButtonStop"
+import { useNavigate } from "react-router-dom"
 
 interface HomeProps {}
 
 export const Home: React.FC<HomeProps> = ({}) => {
+    const navigate = useNavigate()
+
     return (
         <Box
             sx={{
@@ -14,29 +17,18 @@ export const Home: React.FC<HomeProps> = ({}) => {
                 width: "100%",
                 height: "100%",
                 alignItems: "center",
-                gap: "10vw",
+                gap: "15vw",
                 padding: "3vw",
-                // bgcolor: "green",
+                pt: "20vw",
             }}
         >
             <img src={logo} style={{ width: "40%" }} />
-            <Box sx={{ height: "80%", flexDirection: "column", justifyContent: "space-around", alignItems: "center" }}>
+            <Box sx={{ height: "60%", flexDirection: "column", justifyContent: "space-around", alignItems: "center" }}>
                 <img src={stop} style={{ width: "100%" }} />
                 <Box>
-                    <Button
-                        variant="contained"
-                        color="primary"
-                        sx={{
-                            width: "100%",
-                            borderRadius: "7vw",
-                            p: "4vw",
-                            color: colors.text.terciary,
-                            textTransform: "none",
-                            fontSize: "6vw",
-                        }}
-                    >
+                    <ButtonStop color="primary" onClick={() => navigate("/hall")}>
                         Jogar
-                    </Button>
+                    </ButtonStop>
                 </Box>
             </Box>
         </Box>
