@@ -6,6 +6,9 @@ import { SnackbarProvider } from "burgos-snackbar"
 import { ConfirmDialogProvider } from "burgos-confirm"
 import { IoProvider } from "./contexts/ioContext"
 import { AvatarProvider } from "./contexts/avatarContext"
+import { MantineProvider } from "@mantine/core"
+import { useMantineTheme } from "./hooks/useMantineTheme"
+import "@mantine/core/styles.css"
 
 interface ProvidersProps {
     children?: React.ReactNode
@@ -13,6 +16,7 @@ interface ProvidersProps {
 
 export const Providers: React.FC<ProvidersProps> = ({ children }) => {
     const mui_theme = useMuiTheme()
+    const mantine_theme = useMantineTheme()
 
     return (
         <BrowserRouter>
@@ -21,7 +25,9 @@ export const Providers: React.FC<ProvidersProps> = ({ children }) => {
                     <ThemeProvider theme={mui_theme}>
                         <SnackbarProvider>
                             <ConfirmDialogProvider>
-                                <IoProvider>{children}</IoProvider>
+                                <IoProvider>
+                                    <MantineProvider theme={mantine_theme}>{children}</MantineProvider>
+                                </IoProvider>
                             </ConfirmDialogProvider>
                         </SnackbarProvider>
                     </ThemeProvider>

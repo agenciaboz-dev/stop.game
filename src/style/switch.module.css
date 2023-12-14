@@ -1,0 +1,35 @@
+.root {
+    background-color: light-dark(var(--mantine-color-white), var(--mantine-color-dark-6));
+    /* box-shadow: var(--mantine-shadow-md); */
+    border: rem(1px) solid light-dark(var(--mantine-color-gray-1), var(--mantine-color-dark-4));
+    font-family: KG;
+}
+
+.indicator {
+    background-image: linear-gradient(to right, #8cc751, #8cc751);
+    font-family: KG;
+}
+
+.control {
+    &::before {
+        display: none;
+    }
+}
+
+.label {
+    &,
+    &::after {
+        color: var(--mantine-color-white);
+        font-family: KG;
+        font-size: 6vw;
+        font-weight: 500;
+        letter-spacing: 0.6vw;
+    }
+    &:hover {
+        &[data-active] {
+            color: var(--mantine-color-white);
+            font-family: KG;
+            font-size: 6vw;
+        }
+    }
+}

@@ -5,6 +5,8 @@ export const input_outlined: any = {
     "& .MuiInputLabel-root": {
         color: "#000",
         fontSize: "3.2vw",
+        fontFamily: "KG",
+        letterSpacing: "0.5vw",
 
         "@media (max-width: 600px)": {
             textAlign: "center",
@@ -53,7 +55,7 @@ export const input_outlined: any = {
 export const input: any = {
     "& .MuiInputLabel-root": {
         color: "#000",
-        fontSize: "3.2vw",
+        fontSize: "3.5vw",
 
         "@media (max-width: 600px)": {
             textAlign: "center",
@@ -61,6 +63,7 @@ export const input: any = {
     },
     "& .MuiInputLabel-root:focus": {
         color: "primary.main",
+        bgcolor: "#fff",
     },
     "& .MuiInput-root": {
         bgcolor: "#fff",
@@ -71,11 +74,12 @@ export const input: any = {
         "&::before": {},
     },
     "& .MuiInputBase-root": {
-        borderRadius: "4vw",
+        borderRadius: "6vw",
+        bgcolor: "#fff",
 
         "@media (max-width: 600px)": {
-            borderRadius: "4vw",
-            height: "11vw",
+            borderRadius: "8vw",
+            height: "12vw",
         },
     },
     "& .MuiInputBase-root:not(.MuiInputBase-multiline)": {},
@@ -91,10 +95,10 @@ export const input: any = {
             border: "", // Cor da borda padrão
         },
         "&:hover fieldset": {
-            borderColor: colors.primary, // Cor da borda ao passar o mouse
+            // borderColor: colors.primary, // Cor da borda ao passar o mouse
         },
         "&.Mui-focused fieldset": {
-            border: `2px solid ${colors.primary}`, // Cor da borda quando focado
+            border: `2px solid ${colors.button2}`, // Cor da borda quando focado
         },
     },
     "& .MuiOutlinedInput-input": {

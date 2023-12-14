@@ -13,7 +13,7 @@ export const ModalNew: React.FC<ModalNewProps> = ({ handleClose, open }) => {
     return (
         <Box sx={{ alignItems: "center" }}>
             <Modal
-                sx={{ p: "20vw 15vw", alignItems: "center", justifyContent: "center" }}
+                sx={{ p: "20vw 12vw", alignItems: "center", justifyContent: "center" }}
                 open={open}
                 onClose={handleClose}
                 aria-labelledby="modal-modal-title"

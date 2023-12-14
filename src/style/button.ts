@@ -4,7 +4,8 @@ export const button_style: any = {
     borderRadius: "7vw",
     p: "0 10vw",
     textTransform: "none",
-    color:"#fff",
+    color: "#fff",
     fontSize: "12vw",
-    fontFamily: "KGPrimaryPenmanship",
+    fontFamily: "KG",
+    boxShadow: "0",
 }

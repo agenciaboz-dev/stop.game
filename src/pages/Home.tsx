@@ -22,7 +22,7 @@ export const Home: React.FC<HomeProps> = ({}) => {
                 pt: "20vw",
             }}
         >
-            <img src={logo} style={{ width: "40%" }} />
+            <img src={logo} style={{ width: "50%" }} />
             <Box sx={{ height: "60%", flexDirection: "column", justifyContent: "space-around", alignItems: "center" }}>
                 <img src={stop} style={{ width: "100%" }} />
                 <Box>
