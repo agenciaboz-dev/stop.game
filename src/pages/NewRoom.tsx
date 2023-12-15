@@ -11,8 +11,6 @@ import { ButtonStop } from "../components/ButtonStop"
 import { useNavigate } from "react-router-dom"
 import { useFormik } from "formik"
 import { Room } from "../definitions/Room"
-import { Player } from "../definitions/Player"
-import { useId } from "@mantine/hooks"
 import { CreateRoom } from "../definitions/NewRoom"
 
 interface NewRoomProps {}
@@ -25,7 +23,7 @@ export const NewRoom: React.FC<NewRoomProps> = ({}) => {
     const formik = useFormik<CreateRoom>({
         initialValues: {
             name: "",
-            host:"",
+            host: "",
             password: "",
         },
         onSubmit: (values: CreateRoom) => {
