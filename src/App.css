@@ -4,12 +4,16 @@
     font-family: KG;
     src: url("./assets//fonts/KGPrimaryPenmanship.ttf");
 }
+@font-face {
+    font-family: Rubik;
+    src: url("./assets//fonts/RubikDoodleShadow.ttf");
+}
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "Montserrat", sans-serif;
+    font-family: "KG", sans-serif;
     /* user-select: none; */
 }
 

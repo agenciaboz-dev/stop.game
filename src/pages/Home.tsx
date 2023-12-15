@@ -20,6 +20,7 @@ export const Home: React.FC<HomeProps> = ({}) => {
                 gap: "15vw",
                 padding: "3vw",
                 pt: "20vw",
+                p: "4vw",
             }}
         >
             <img src={logo} style={{ width: "50%" }} />

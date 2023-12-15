@@ -4,7 +4,7 @@ import { colors } from "../style/colors"
 export const useMuiTheme = () => {
     const THEME = createTheme({
         typography: {
-            fontFamily: ["Montserrat", "KG"].join(","),
+            fontFamily: ["Montserrat", "KG","Rubik"].join(","),
         },
         palette: {
             primary: {

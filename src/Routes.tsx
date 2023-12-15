@@ -11,15 +11,14 @@ interface RoutesProps {}
 
 export const Routes: React.FC<RoutesProps> = ({}) => {
     return (
-        <Box sx={{ display: "flex", width: "100%", p: "10vw", height: "100%", alignSelf: "center" }}>
+        <Box sx={{ display: "flex", width: "100%", p: "4vw", height: "100%", alignSelf: "center" }}>
             <ReacRoutes>
                 <Route index element={<Home />} />
                 <Route path="/*" element={<Home />} />
                 <Route path="/hall" element={<Hall />} />
                 <Route path="/new" element={<NewRoom />} />
-                <Route path="/rooms" element={ <RoomList /> } />
-                <Route path="/room/*" element={ <Room /> } />
-                
+                <Route path="/rooms" element={<RoomList />} />
+                <Route path="/room/*" element={<Room />} />
             </ReacRoutes>
         </Box>
     )

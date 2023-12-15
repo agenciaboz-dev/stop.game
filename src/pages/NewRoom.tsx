@@ -41,7 +41,7 @@ export const NewRoom: React.FC<NewRoomProps> = ({}) => {
         console.log(privacy)
     }, [privacy])
     return (
-        <Box sx={{ alignItems: "center", flexDirection: "column", gap: "8vw ", width: "100%" }}>
+        <Box sx={{ alignItems: "center", flexDirection: "column", gap: "8vw ", width: "100%",p: "4vw", }}>
             <img src={logo} style={{ width: "40%" }} />
             <form onSubmit={formik.handleSubmit} style={{ display: "contents" }}>
                 <Box

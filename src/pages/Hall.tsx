@@ -13,7 +13,7 @@ import logo from "../assets/logo/logo.png"
 interface HallProps {}
 
 const buttons_hall = {
-    fontSize: "6vw",
+    fontSize: "8vw",
     p: "0 5vw",
     width: "60%",
 }
@@ -37,7 +37,7 @@ export const Hall: React.FC<HallProps> = ({}) => {
                 height: "100%",
                 alignItems: "center",
                 gap: "10vw",
-                padding: "2.5vw",
+                padding: "6.5vw",
             }}
         >
             <Box sx={ { flexDirection: "column", gap: "8vw", alignItems: "center" } }>
@@ -55,7 +55,7 @@ export const Hall: React.FC<HallProps> = ({}) => {
                 </Box>
                 <InputStop label="Digite seu nome aqui" name="nickname" sx={{ ...input_outlined, width: "80%" }} />
             </Box>
-            <Box sx={{ flexDirection: "column", width: "100%", alignItems: "center", gap: "5vw" }}>
+            <Box sx={{ flexDirection: "column", width: "100%", alignItems: "center", gap: "2vw" }}>
                 <ButtonStop sx={{ ...buttons_hall, bgcolor: colors.button2 }}>Sala Aleatória</ButtonStop>
                 <ButtonStop sx={{ ...buttons_hall, bgcolor: colors.primary }}>Salas</ButtonStop>
                 <ButtonStop sx={{ ...buttons_hall, bgcolor: colors.secondary }} onClick={() => navigate("/new")}>
