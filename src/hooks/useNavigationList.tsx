@@ -12,14 +12,32 @@ import SwapHorizIcon from "@mui/icons-material/SwapHoriz"
 import { SxProps } from "@mui/material"
 
 export const useNavigationList = () => {
-    
-
     const iconStyle: SxProps = { color: "#232323" }
 
-    const menu: NavigationMenu = {
+    const players: NavigationMenu = {
         id: 1,
         title: "Administrador",
-        //hidden: user?.adm == false,
+        location: "/adm",
+        icon: <AppsIcon />,
+        drawer: [
+            {
+                id: 1,
+                title: "Meu Perfil",
+                location: "/adm/profile",
+                icon: <LocalShippingIcon />,
+            },
+            {
+                id: 2,
+                title: "Cadastrar Funcionário",
+                location: "/adm/new_employee",
+                icon: <SwapHorizIcon />,
+            },
+        ],
+        bottom: [],
+    }
+    const categories: NavigationMenu = {
+        id: 1,
+        title: "Administrador",
         location: "/adm",
         icon: <AppsIcon />,
         drawer: [
@@ -39,5 +57,5 @@ export const useNavigationList = () => {
         bottom: [],
     }
 
-    return { menu }
+    return { players,categories }
 }

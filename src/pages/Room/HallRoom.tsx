@@ -20,7 +20,7 @@ export const HallRoom: React.FC<HallRoomProps> = ({}) => {
     }
     return (
         <Box sx={{ flexDirection: "column", width: "100%", height: "100%", gap: "4vw" }}>
-            <Header color={colors.primary} bgIcon={colors.button} />
+            <Header color={colors.primary} bgIcon={colors.button} round={false} />
             <Box
                 sx={{
                     width: "100%",
@@ -37,26 +37,27 @@ export const HallRoom: React.FC<HallRoomProps> = ({}) => {
                     sx={{
                         bgcolor: "#fff",
                         width: "100%",
-                        height: "60%",
+                        height: "50%",
                         borderRadius: "4vw",
                         flexDirection: "column",
                         p: "4vw",
                         alignItems: "center",
-                        gap: "5vw",
                         justifyContent: "space-between",
                     }}
                 >
                     <img src={logo} style={{ width: "30%" }} />
                     <Box sx={{ flexDirection: "column", alignItems: "center" }}>
-                        <p style={{ fontFamily: "KG", fontSize: "8vw", color: "#000" }}>Sala #nomedasala</p>
-                        <p style={{ fontFamily: "KG", fontSize: "6vw", color: "#000" }}>Compartilhe com seus amigos</p>
-                        <Box sx={{ flexDirection: "row", alignItems: "center", gap: "3vw", color: "#000" }}>
-                            <p style={{ fontFamily: "KG", fontSize: "6vw", color: "#000",margin:"0" }}>#link</p>
+                        <p style={{ fontFamily: "KG", fontSize: "8vw", color: "#000", margin: 0 }}>Sala #nomedasala</p>
+                        <p style={{ fontFamily: "KG", fontSize: "6vw", color: "#000", margin: 0 }}>
+                            Compartilhe com seus amigos
+                        </p>
+                        <Box sx={{ flexDirection: "row", alignItems: "center", color: "#000" }}>
+                            <p style={{ fontFamily: "KG", fontSize: "6vw", color: "#000", margin: "0" }}>#link</p>
                             <ContentCopyIcon />
                         </Box>
                     </Box>
 
-                    <p style={{ fontFamily: "KG", fontSize: "7vw", color:"#000" }}>Anfitrião, inicie o jogo!</p>
+                    <p style={{ fontFamily: "KG", fontSize: "7vw", color: "#000", margin: 0 }}>Anfitrião, inicie o jogo!</p>
                 </Box>
 
                 <ButtonStop sx={{ ...button_style, ...button_hall }} onClick={() => navigate("/room/1/round")}>
@@ -67,6 +68,9 @@ export const HallRoom: React.FC<HallRoomProps> = ({}) => {
                 </ButtonStop>
                 <ButtonStop sx={{ ...button_style, ...button_hall }} onClick={() => navigate("/")}>
                     Configurações
+                </ButtonStop>
+                <ButtonStop sx={{ ...button_style, ...button_hall, bgcolor: colors.button2, color:"#fff" }} onClick={() => navigate("/")}>
+                    Sair
                 </ButtonStop>
             </Box>
         </Box>

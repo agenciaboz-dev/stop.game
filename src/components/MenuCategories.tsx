@@ -1,22 +1,22 @@
 import React, { useEffect } from "react"
 import { Avatar, Box, Drawer, IconButton, MenuItem, SxProps } from "@mui/material"
-import { useMenuDrawerPlayers } from "../hooks/useMenuPlayers"
 import { useNavigationList } from "../hooks/useNavigationList"
 import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace"
 import { useNavigate } from "react-router-dom"
 import { IoMdClose } from "react-icons/io"
 import { avatar_list } from "../assets/avatar_list"
 import { colors } from "../style/colors"
+import { useMenuDrawerCategories } from "../hooks/useMenuCategories"
 
-interface MenuPlayersProps {}
+interface MenuCategoriesProps {}
 
-export const MenuPlayers: React.FC<MenuPlayersProps> = ({}) => {
+export const MenuCategories: React.FC<MenuCategoriesProps> = ({}) => {
     const navigationItems = useNavigationList()
-    const DrawerItems = navigationItems.players.drawer
+    const DrawerItems = navigationItems.categories.drawer
 
     const navigate = useNavigate()
 
-    const { open, setOpen } = useMenuDrawerPlayers()
+    const { open, setOpen } = useMenuDrawerCategories()
 
     const iconStyle: SxProps = {
         width: "15vw",
@@ -28,6 +28,7 @@ export const MenuPlayers: React.FC<MenuPlayersProps> = ({}) => {
         width: "9vw",
         padding: "1.5vw",
         color: "#000",
+        right: "5vw",
     }
 
     const menuItemStyle: SxProps = {
@@ -46,18 +47,18 @@ export const MenuPlayers: React.FC<MenuPlayersProps> = ({}) => {
 
     return (
         <Drawer
-            anchor={"right"}
+            anchor={"left"}
             open={open}
             onClose={handleClose}
             PaperProps={{
                 sx: {
                     padding: "6vw 3vw",
-                    width: "60vw",
+                    width: "95vw",
                     height: "100%",
-                    borderTopLeftRadius: "10vw",
-                    borderBottomLeftRadius: "10vw",
+                    borderTopRightRadius: "10vw",
+                    borderBottomRightRadius: "10vw",
                     overflowX: "hidden",
-                    backgroundColor: colors.secondary,
+                    backgroundColor: colors.button,
                     justifyContent: "space-between",
                 },
             }}
@@ -81,32 +82,10 @@ export const MenuPlayers: React.FC<MenuPlayersProps> = ({}) => {
                             }}
                         >
                             {" "}
-                            Jogadores
+                            Categorias
                         </p>
                     </Box>
-                    <Box sx={{ alignItems: "center", gap: "3vw", flexDirection: "row", width: "100%", height: "5%" }}>
-                        <Avatar
-                            src={avatar_list[15]}
-                            sx={{ width: "10vw", height: "10vw", alignSelf: "center", bgcolor: colors.button }}
-                        />
-                        <p style={{ fontFamily: "KG", fontSize: "8vw", margin: 0 }}>Ana</p>
-                    </Box>
-                    <Box sx={{ alignItems: "center", gap: "3vw", flexDirection: "row", width: "100%", height: "5%" }}>
-                        <Avatar
-                            src={avatar_list[15]}
-                            sx={{ width: "10vw", height: "10vw", alignSelf: "center", bgcolor: colors.button }}
-                        />
-                        <p style={{ fontFamily: "KG", fontSize: "8vw", margin: 0 }}>Ana</p>
-                    </Box>
-                    <Box sx={{ alignItems: "center", gap: "3vw", flexDirection: "row", width: "100%", height: "5%" }}>
-                        <Avatar
-                            src={avatar_list[15]}
-                            sx={{ width: "10vw", height: "10vw", alignSelf: "center", bgcolor: colors.button }}
-                        />
-                        <p style={{ fontFamily: "KG", fontSize: "8vw", margin: 0 }}>Ana</p>
-                    </Box>
                 </Box>
-                {/*  */}
                 <Box sx={{ flexDirection: "column", paddingTop: "4vw" }}>
                     {DrawerItems.map((menu: any) => (
                         <MenuItem

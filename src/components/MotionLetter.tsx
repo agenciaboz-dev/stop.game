@@ -2,6 +2,8 @@ import React from "react"
 import { motion } from "framer-motion"
 import "../style/box.css"
 import { colors } from "../style/colors"
+import { Forms } from "../pages/Room/Round/Forms"
+import { Box } from "@mui/material"
 
 interface MotionLetterProps {}
 
@@ -30,25 +32,30 @@ interface PhraseProps {}
 
 export const Phrase: React.FC<PhraseProps> = ({}) => {
     return (
-        <motion.div
-            style={{ width: "100%", height: "100%", alignItems: "end", display: "flex", justifyContent: "end" }}
-            initial={{ opacity: 1 }}
-            animate={{ opacity: 0 }}
-            transition={{ delay: 1, duration: 1.1 }}
-        >
-            <p
-                style={{
-                    fontSize: "10vw",
-                    fontFamily: "KG",
-                    fontWeight: "600",
-                    letterSpacing: "0.8vw",
-                    width: "100%",
-                    textAlign: "center",
-                    color: colors.secondary,
-                }}
+        <Box sx={{ width: "100%", height: "100%", flexDirection: "column" }}>
+            <Forms />
+            <motion.div
+                className="motion-phrase"
+                style={{ width: "100%", height: "100%", alignItems: "end", display: "flex", justifyContent: "end" }}
+                initial={{ opacity: 1 }}
+                animate={{ opacity: 0 }}
+                transition={{ delay: 1, duration: 1.1 }}
             >
-                A letra é
-            </p>
-        </motion.div>
+                <p
+                    style={{
+                        fontSize: "10vw",
+                        fontFamily: "KG",
+                        fontWeight: "600",
+                        letterSpacing: "0.8vw",
+                        width: "100%",
+                        textAlign: "center",
+                        color: colors.secondary,
+                        margin: 0,
+                    }}
+                >
+                    A letra é
+                </p>
+            </motion.div>
+        </Box>
     )
 }

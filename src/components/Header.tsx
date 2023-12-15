@@ -3,18 +3,23 @@ import React from "react"
 import { colors } from "../style/colors"
 import { GiAstronautHelmet } from "react-icons/gi"
 import { BiArrowToLeft } from "react-icons/bi"
+import { RiEdit2Fill } from "react-icons/ri"
 import { useNavigate } from "react-router-dom"
 import { MenuPlayers } from "./MenuPlayers"
-import { useMenuDrawer } from "../hooks/useMenuDrawer"
+import { useMenuDrawerPlayers } from "../hooks/useMenuPlayers"
+import { useMenuDrawerCategories } from "../hooks/useMenuCategories"
+import { MenuCategories } from "./MenuCategories"
 
 interface HeaderProps {
     color: string
     bgIcon?: string
+    round: boolean
 }
 
-export const Header: React.FC<HeaderProps> = ({ color, bgIcon }) => {
+export const Header: React.FC<HeaderProps> = ({ color, bgIcon, round }) => {
     const navigate = useNavigate()
-    const menu = useMenuDrawer()
+    const menuPlayers = useMenuDrawerPlayers()
+    const menuCategories = useMenuDrawerCategories()
     return (
         <Box
             sx={{
@@ -27,18 +32,33 @@ export const Header: React.FC<HeaderProps> = ({ color, bgIcon }) => {
             }}
         >
             <Box bgcolor={bgIcon} sx={{ borderRadius: "8vw", height: "100%", width: "11vw", justifyContent: "center" }}>
-                <BiArrowToLeft
-                    color="black"
-                    style={{ width: "8vw", height: "100%", bgcolor: colors.primary }}
-                    onClick={() => {
-                        navigate("../1")
-                    }}
-                />
+                {round ? (
+                    <BiArrowToLeft
+                        color="black"
+                        style={{ width: "8vw", height: "100%", bgcolor: colors.primary }}
+                        onClick={() => {
+                            navigate("../1")
+                        }}
+                    />
+                ) : (
+                    <RiEdit2Fill
+                        color="black"
+                        style={{ width: "8vw", height: "100%", bgcolor: colors.primary }}
+                        onClick={() => {
+                            menuCategories.toggle()
+                        }}
+                    />
+                )}
             </Box>
             <Box bgcolor={bgIcon} sx={{ borderRadius: "8vw", height: "100%", width: "11vw", justifyContent: "center" }}>
-                <GiAstronautHelmet color="black" style={{ width: "8vw", height: "100%" }} onClick={() => menu.toggle()} />
+                <GiAstronautHelmet
+                    color="black"
+                    style={{ width: "8vw", height: "100%" }}
+                    onClick={() => menuPlayers.toggle()}
+                />
             </Box>
             <MenuPlayers />
+            <MenuCategories />
         </Box>
     )
 }

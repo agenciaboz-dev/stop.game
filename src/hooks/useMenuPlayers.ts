@@ -1,8 +1,8 @@
 import { useContext } from "react"
-import MenuDrawerContext from "../contexts/menuDrawerContext"
+import MenuPlayersContext from "../contexts/menuPlayersContext"
 
-export const useMenuDrawer = () => {
-    const menuDrawerContext = useContext(MenuDrawerContext)
+export const useMenuDrawerPlayers = () => {
+    const menuDrawerContext = useContext(MenuPlayersContext)
 
     const toggle = () => {
         menuDrawerContext.setOpen(!menuDrawerContext.open)

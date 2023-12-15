@@ -9,7 +9,8 @@ import { AvatarProvider } from "./contexts/avatarContext"
 import { MantineProvider } from "@mantine/core"
 import { useMantineTheme } from "./hooks/useMantineTheme"
 import "@mantine/core/styles.css"
-import { MenuDrawerProvider } from "./contexts/menuDrawerContext"
+import { MenuCategoriesProvider } from "./contexts/menuCategoriesContext"
+import { MenuPlayersProvider } from "./contexts/menuPlayersContext"
 
 interface ProvidersProps {
     children?: React.ReactNode
@@ -24,15 +25,17 @@ export const Providers: React.FC<ProvidersProps> = ({ children }) => {
             <IoProvider>
                 <AvatarProvider>
                     <ThemeProvider theme={mui_theme}>
-                        <MenuDrawerProvider>
-                            <SnackbarProvider>
-                                <ConfirmDialogProvider>
-                                    <IoProvider>
-                                        <MantineProvider theme={mantine_theme}>{children}</MantineProvider>
-                                    </IoProvider>
-                                </ConfirmDialogProvider>
-                            </SnackbarProvider>
-                        </MenuDrawerProvider>
+                        <MenuPlayersProvider>
+                            <MenuCategoriesProvider>
+                                <SnackbarProvider>
+                                    <ConfirmDialogProvider>
+                                        <IoProvider>
+                                            <MantineProvider theme={mantine_theme}>{children}</MantineProvider>
+                                        </IoProvider>
+                                    </ConfirmDialogProvider>
+                                </SnackbarProvider>
+                            </MenuCategoriesProvider>
+                        </MenuPlayersProvider>
                     </ThemeProvider>
                 </AvatarProvider>
             </IoProvider>
