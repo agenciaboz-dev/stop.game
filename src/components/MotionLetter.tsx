@@ -14,7 +14,7 @@ export const MotionLetter: React.FC<MotionLetterProps> = ({}) => {
             className="box"
             animate={{
                 scale: [1.2, 1.1, 1, 0.9, 0.8, 0.7, 0.6, 0.5, 0.4, 0.3, 0.2],
-                y: [0, 0, 0, -25, -50, -75, -100, -125, -150, -175, -200, -222],
+                y: [0, 0, 0, -25, -50, -75, -100, -125, -150, -175, -200, -241],
             }}
             transition={{
                 duration: 2,
@@ -23,7 +23,7 @@ export const MotionLetter: React.FC<MotionLetterProps> = ({}) => {
                 repeat: 0,
             }}
         >
-            <h1 style={{ fontFamily: "Rubik", fontSize: "45vw", color: "#000" }}>A</h1>
+            <h1 style={{ fontFamily: "Rubik", fontSize: "45vw", color: "#000" }}>M</h1>
         </motion.div>
     )
 }

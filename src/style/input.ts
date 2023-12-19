@@ -56,9 +56,10 @@ export const input: any = {
     "& .MuiInputLabel-root": {
         color: "#000",
         fontSize: "3.5vw",
-
+        
         "@media (max-width: 600px)": {
             textAlign: "center",
+            
         },
     },
     "& .MuiInputLabel-root:focus": {
@@ -76,7 +77,9 @@ export const input: any = {
     "& .MuiInputBase-root": {
         borderRadius: "6vw",
         bgcolor: "#fff",
-
+        fontFamily: "KG",
+        letterSpacing: "0.5vw",
+        fontSize: "5vw",
         "@media (max-width: 600px)": {
             borderRadius: "8vw",
             height: "12vw",
