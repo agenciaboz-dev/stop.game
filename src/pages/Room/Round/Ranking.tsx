@@ -1,4 +1,4 @@
-import { Box, Button, IconButton } from "@mui/material"
+import { Avatar, Box, Button, IconButton } from "@mui/material"
 import React from "react"
 import { colors } from "../../../style/colors"
 import { Header } from "../../../components/Header"
@@ -7,6 +7,8 @@ import { ButtonStop } from "../../../components/ButtonStop"
 import { MdKeyboardDoubleArrowLeft } from "react-icons/md"
 import { MdKeyboardDoubleArrowRight } from "react-icons/md"
 import { useNavigate } from "react-router-dom"
+import { avatar_list } from "../../../assets/avatar_list"
+import { CardPlayer } from "../../../components/CardPlayer"
 
 interface RankingProps {}
 
@@ -28,7 +30,7 @@ export const Ranking: React.FC<RankingProps> = ({}) => {
                 }}
             >
                 <h1 style={{ fontFamily: "Rubik", color: "#fff", textAlign: "center", width: "100%", margin: "0" }}>
-                    Avaliação
+                    Ranking
                 </h1>
 
                 <Box
@@ -41,42 +43,13 @@ export const Ranking: React.FC<RankingProps> = ({}) => {
                         p: "3vw",
                     }}
                 >
-                    <Box
-                        sx={{
-                            bgcolor: colors.button,
-                            borderRadius: "3vw",
-                            width: "100%",
-                            p: "1vw",
-                            justifyContent: "space-between",
-                        }}
-                    >
-                        <IconButton>
-                            <MdKeyboardDoubleArrowLeft />
-                        </IconButton>
-                        <p
-                            style={{
-                                fontFamily: "KG",
-                                fontWeight: "800",
-                                fontSize: "7vw",
-                                letterSpacing: "0.5vw",
-                                color: "#000",
-                                margin: 0,
-
-                                textAlign: "center",
-                            }}
-                        >
-                            Animal
-                        </p>
-                        <IconButton>
-                            <MdKeyboardDoubleArrowRight />
-                        </IconButton>
-                    </Box>
-                    <Box sx={{ gap: "3vw", flexDirection: "column" }}>
-                        <Avalaible />
-                        <Avalaible />
-                        <Avalaible />
-                        <Avalaible />
-                        <Avalaible />
+                    <Box sx={{ gap: "3vw", flexDirection: "column", width: "100%", height: "60%" }}>
+                        <CardPlayer />
+                        <CardPlayer />
+                        <CardPlayer />
+                        <CardPlayer />
+                        <CardPlayer />
+                        <CardPlayer />
                     </Box>
                 </Box>
                 <Box sx={{ flexDirection: "row", gap: "2vw" }}>
@@ -84,14 +57,14 @@ export const Ranking: React.FC<RankingProps> = ({}) => {
                         variant="contained"
                         sx={{ bgcolor: colors.secondary, fontWeight: "400", fontSize: "6vw", p: "1vw" }}
                     >
-                        Pular
+                        Sair
                     </ButtonStop>
                     <ButtonStop
                         variant="contained"
                         sx={{ fontFamily: "KG", bgcolor: colors.button2, fontWeight: "400", fontSize: "6vw", p: "1vw" }}
-                        onClick={() => navigate("scores")}
+                        onClick={() => navigate("/room/1/round")}
                     >
-                        Salvar avaliação
+                        Jogar Novamente
                     </ButtonStop>
                 </Box>
             </Box>

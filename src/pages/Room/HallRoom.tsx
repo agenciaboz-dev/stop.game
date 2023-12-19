@@ -69,7 +69,10 @@ export const HallRoom: React.FC<HallRoomProps> = ({}) => {
                 <ButtonStop sx={{ ...button_style, ...button_hall }} onClick={() => navigate("/")}>
                     Configurações
                 </ButtonStop>
-                <ButtonStop sx={{ ...button_style, ...button_hall, bgcolor: colors.button2, color:"#fff" }} onClick={() => navigate("/")}>
+                <ButtonStop
+                    sx={{ ...button_style, ...button_hall, bgcolor: colors.secondary, color: "#fff" }}
+                    onClick={() => navigate("/")}
+                >
                     Sair
                 </ButtonStop>
             </Box>
