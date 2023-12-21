@@ -23,6 +23,8 @@ export const input_outlined: any = {
     },
     "& .MuiInputBase-root": {
         borderRadius: "4vw",
+        fontFamily: "KG",
+        fontSize: "5vw",
 
         "@media (max-width: 600px)": {
             borderRadius: "4vw",

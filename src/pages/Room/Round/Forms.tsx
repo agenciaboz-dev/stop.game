@@ -51,9 +51,10 @@ export const Forms: React.FC<FormsProps> = ({}) => {
                         p: "4vw",
                         flexDirection: "column",
                         gap: "4vw",
+                        justifyContent: "space-between",
                     }}
                 >
-                    <Grid container spacing={2}>
+                    <Grid container spacing={2} sx={{ justifyContent: "space-between" }}>
                         <Grid item xs={6}>
                             <Box sx={{ flexDirection: "column", alignItems: "center" }}>
                                 <p style={{ margin: 0, color: "#000", fontFamily: "KG", fontSize: "7vw" }}>Animal</p>

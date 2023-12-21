@@ -53,7 +53,7 @@ export const MenuCategories: React.FC<MenuCategoriesProps> = ({}) => {
             PaperProps={{
                 sx: {
                     padding: "6vw 3vw",
-                    width: "95vw",
+                    width: "98vw",
                     height: "100%",
                     borderTopRightRadius: "10vw",
                     borderBottomRightRadius: "10vw",

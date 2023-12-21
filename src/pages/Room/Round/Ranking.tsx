@@ -21,7 +21,7 @@ export const Ranking: React.FC<RankingProps> = ({}) => {
                 sx={{
                     bgcolor: colors.primary,
                     width: "100%",
-                    height: "85%",
+                    height: "fit-content",
                     borderRadius: "4vw",
                     alignItems: "center",
                     p: "3vw",
@@ -56,6 +56,7 @@ export const Ranking: React.FC<RankingProps> = ({}) => {
                     <ButtonStop
                         variant="contained"
                         sx={{ bgcolor: colors.secondary, fontWeight: "400", fontSize: "6vw", p: "1vw" }}
+                        onClick={() => navigate("/hall")}
                     >
                         Sair
                     </ButtonStop>

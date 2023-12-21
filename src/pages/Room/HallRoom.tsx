@@ -21,7 +21,7 @@ export const HallRoom: React.FC<HallRoomProps> = ({}) => {
         color: "#000",
     }
     return (
-        <Box sx={{ flexDirection: "column", width: "100%", height: "100%", gap: "4vw" }}>
+        <Box sx={{ flexDirection: "column", width: "100%", height: "100%", gap: "4vw", p: "2vw" }}>
             <Header color={colors.primary} bgIcon={colors.button} round={false} />
             <Box
                 sx={{
@@ -29,10 +29,10 @@ export const HallRoom: React.FC<HallRoomProps> = ({}) => {
                     height: "90%",
                     bgcolor: colors.primary,
                     borderRadius: "4vw",
-                    p: "12vw",
+                    p: "8vw",
                     flexDirection: "column",
                     alignItems: "center",
-                    gap: "4vw",
+                    justifyContent: "space-between",
                 }}
             >
                 <Box

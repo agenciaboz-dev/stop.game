@@ -14,7 +14,8 @@ export const MotionLetter: React.FC<MotionLetterProps> = ({}) => {
             className="box"
             animate={{
                 scale: [1.2, 1.1, 1, 0.9, 0.8, 0.7, 0.6, 0.5, 0.4, 0.3, 0.2],
-                y: [0, 0, 0, -25, -50, -75, -100, -125, -150, -175, -200, -241],
+                y: [0, 0, 0, -25, -50, -75, -100, -125, -130, -145, -155, -165],
+                opacity: 0,
             }}
             transition={{
                 duration: 2,

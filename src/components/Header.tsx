@@ -9,14 +9,16 @@ import { MenuPlayers } from "./MenuPlayers"
 import { useMenuDrawerPlayers } from "../hooks/useMenuPlayers"
 import { useMenuDrawerCategories } from "../hooks/useMenuCategories"
 import { MenuCategories } from "./MenuCategories"
+import { motion } from "framer-motion"
 
 interface HeaderProps {
     color: string
     bgIcon?: string
     round: boolean
+    letter?: string
 }
 
-export const Header: React.FC<HeaderProps> = ({ color, bgIcon, round }) => {
+export const Header: React.FC<HeaderProps> = ({ color, bgIcon, round, letter }) => {
     const navigate = useNavigate()
     const menuPlayers = useMenuDrawerPlayers()
     const menuCategories = useMenuDrawerCategories()
@@ -25,9 +27,9 @@ export const Header: React.FC<HeaderProps> = ({ color, bgIcon, round }) => {
             sx={{
                 bgcolor: color,
                 width: "100%",
-                height: "7%",
+                height: round ? "fit-content" : "8%",
                 borderRadius: "4vw",
-                p: "2vw 4vw",
+                p: "1vw 4vw",
                 justifyContent: "space-between",
             }}
         >
@@ -50,6 +52,28 @@ export const Header: React.FC<HeaderProps> = ({ color, bgIcon, round }) => {
                     />
                 )}
             </Box>
+            {letter !== null && (
+                <Box sx={{}}>
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ delay: 2.5, ease: "easeIn" }}
+                    >
+                        <p
+                            style={{
+                                fontFamily: "Rubik",
+                                fontSize: "8vw",
+                                color: "#000",
+                                fontWeight: "800",
+                                margin: 0,
+                                height: "100%",
+                            }}
+                        >
+                            {letter}
+                        </p>
+                    </motion.div>
+                </Box>
+            )}
             <Box bgcolor={bgIcon} sx={{ borderRadius: "8vw", height: "100%", width: "11vw", justifyContent: "center" }}>
                 <GiAstronautHelmet
                     color="black"

@@ -24,7 +24,7 @@ export const Round: React.FC<RoundProps> = ({}) => {
 
     return (
         <Box sx={{ flexDirection: "column", width: "100%", height: "100%", gap: "4vw" }}>
-            <Header color={colors.button2} bgIcon={""} round />
+            <Header color={colors.button2} bgIcon={""} round letter="T"/>
             <MotionLetter />
             <Box
                 sx={{

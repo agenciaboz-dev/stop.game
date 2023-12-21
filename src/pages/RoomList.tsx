@@ -1,22 +1,26 @@
 import { Box } from "@mui/material"
-import React from "react"
+import React, { useEffect, useState } from "react"
 import logo from "../assets/logo/logo.png"
 import { colors } from "../style/colors"
 import { title } from "../style/title"
 import { ButtonStop } from "../components/ButtonStop"
 import { useArray } from "../hooks/useArray"
 import { useNavigate } from "react-router-dom"
+import { ModalNew } from "../components/ModalNew"
+import { GiPadlock } from "react-icons/gi"
 
 interface RoomListProps {}
 
 export const RoomList: React.FC<RoomListProps> = ({}) => {
     const navigate = useNavigate()
-    const list = useArray().newArray(12)
+
+    const [open, setOpen] = useState(false)
+
     return (
         <Box
             sx={{
                 width: "100%",
-                height: "100%",
+                height: "fit-content",
                 justifyContent: "center",
                 alignItems: "center",
                 flexDirection: "column",
@@ -36,7 +40,6 @@ export const RoomList: React.FC<RoomListProps> = ({}) => {
             <Box
                 sx={{
                     width: "100%",
-                    // bgcolor: "red",
                     height: "70%",
                     flexDirection: "column",
                     gap: "3vw",
@@ -44,19 +47,21 @@ export const RoomList: React.FC<RoomListProps> = ({}) => {
                     overflowY: "auto",
                 }}
             >
-                {list.map((item, index) => (
-                    <ButtonStop
-                        key={index}
-                        sx={{ width: "70%", fontSize: "9vw" }}
-                        onClick={() => navigate(`/room/${index + 1}`)}
-                    >
-                        {" "}
-                        Sala {index + 1}
-                    </ButtonStop>
-                ))}
+                <ButtonStop sx={{ width: "80%", fontSize: "8vw", gap: "3vw" }} onClick={() => setOpen(true)}>
+                    Studio ABC
+                    <GiPadlock color={"#1B789F"} style={{ width: "6vw" }} />
+                </ButtonStop>
+                <ButtonStop sx={{ width: "80%", fontSize: "8vw", gap: "3vw" }} onClick={() => setOpen(true)}>
+                    Studio ABC
+                    <GiPadlock color={"#1B789F"} style={{ width: "6vw" }} />
+                </ButtonStop>
+                <ButtonStop sx={{ width: "80%", fontSize: "8vw", gap: "3vw" }} onClick={() => setOpen(true)}>
+                    Studio ABC
+                    <GiPadlock color={"#1B789F"} style={{ width: "6vw" }} />
+                </ButtonStop>
+                <ModalNew handleClose={() => setOpen(false)} open={open} />
             </Box>
             <ButtonStop sx={{ width: "50%", fontSize: "6vw", bgcolor: colors.button2 }} onClick={() => navigate("/hall")}>
-                {" "}
                 Voltar
             </ButtonStop>
         </Box>

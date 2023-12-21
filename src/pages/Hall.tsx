@@ -33,13 +33,13 @@ export const Hall: React.FC<HallProps> = ({}) => {
             sx={{
                 flexDirection: "column",
                 width: "100%",
-                height: "100%",
+                height: "fit-content",
                 alignItems: "center",
                 gap: "10vw",
                 padding: "6.5vw",
             }}
         >
-            <Box sx={{ flexDirection: "column", gap: "8vw", alignItems: "center" }}>
+            <Box sx={{ flexDirection: "column", gap: "4vw", alignItems: "center" }}>
                 <img src={logo} style={{ width: "50%" }} />
                 <Box
                     sx={{
@@ -49,7 +49,7 @@ export const Hall: React.FC<HallProps> = ({}) => {
                     }}
                 >
                     <Box sx={{ bgcolor: "#fff", p: "0vw", borderRadius: "50%" }}>
-                        <Avatar src={imageSort} sx={{ width: "50vw", height: "50vw" }} />
+                        <Avatar src={imageSort} sx={{ width: "40vw", height: "40vw" }} />
                     </Box>
                 </Box>
                 <InputStop label="Digite seu nome aqui" name="nickname" sx={{ ...input_outlined, width: "80%" }} />

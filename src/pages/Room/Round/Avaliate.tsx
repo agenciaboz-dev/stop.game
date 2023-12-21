@@ -14,7 +14,7 @@ export const Avaliate: React.FC<AvaliateProps> = ({}) => {
     const navigate = useNavigate()
     return (
         <Box sx={{ width: "100%", height: "100%", flexDirection: "column", gap: "6vw" }}>
-            <Header color={colors.primary} round={false} />
+            <Header color={colors.primary} round={false} letter="T" />
             <Box
                 sx={{
                     bgcolor: colors.primary,

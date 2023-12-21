@@ -41,15 +41,15 @@ export const NewRoom: React.FC<NewRoomProps> = ({}) => {
         console.log(privacy)
     }, [privacy])
     return (
-        <Box sx={{ alignItems: "center", flexDirection: "column", gap: "8vw ", width: "100%",p: "4vw", }}>
-            <img src={logo} style={{ width: "40%" }} />
+        <Box sx={{ alignItems: "center", flexDirection: "column", gap: "1vw ", width: "100%", p: "2vw 4vw" }}>
+            <img src={logo} style={{ width: "30%" }} />
             <form onSubmit={formik.handleSubmit} style={{ display: "contents" }}>
                 <Box
                     sx={{
                         p: "5vw 0vw",
                         alignItems: "center",
                         justifyContent: "center",
-                        height: "80%",
+                        height: "fit-content",
                         width: "100%",
                         flexDirection: "column",
                         gap: "2vw ",
@@ -67,10 +67,10 @@ export const NewRoom: React.FC<NewRoomProps> = ({}) => {
                     <Box
                         sx={{
                             alignItems: "center",
-                            p: "15vw 4vw",
+                            p: "4vw 4vw",
                             bgcolor: colors.secondary,
                             width: "100%",
-                            height: "100%",
+                            height: "fit-content",
                             borderRadius: "4vw",
                             justifyContent: "center",
                             flexDirection: "column",
@@ -80,11 +80,11 @@ export const NewRoom: React.FC<NewRoomProps> = ({}) => {
                         <Box
                             sx={{
                                 width: "100%",
-                                height: "30%",
+                                height: "fit-content",
                                 flexDirection: "column",
                                 justifyContent: "center",
                                 alignItems: "center",
-                                gap: "3vw",
+                                gap: "0vw",
                             }}
                         >
                             <p
@@ -94,6 +94,7 @@ export const NewRoom: React.FC<NewRoomProps> = ({}) => {
                                     fontWeight: "600",
                                     fontFamily: "KG",
                                     letterSpacing: "0.6vw",
+                                    margin: 0,
                                 }}
                             >
                                 Nome da sala
@@ -107,7 +108,7 @@ export const NewRoom: React.FC<NewRoomProps> = ({}) => {
                         </Box>
                         <Box
                             sx={{
-                                height: "35%",
+                                height: "fit-content",
                                 width: "100%",
                                 flexDirection: "column",
                                 justifyContent: "center",
@@ -122,6 +123,7 @@ export const NewRoom: React.FC<NewRoomProps> = ({}) => {
                                     fontWeight: "600",
                                     fontFamily: "KG",
                                     letterSpacing: "0.6vw",
+                                    margin: 0,
                                 }}
                             >
                                 Privacidade
@@ -143,7 +145,7 @@ export const NewRoom: React.FC<NewRoomProps> = ({}) => {
                         {privacy == "Privada" && (
                             <Box
                                 sx={{
-                                    height: "30%",
+                                    height: "fit-content",
                                     width: "100%",
                                     flexDirection: "column",
                                     justifyContent: "center",
@@ -158,6 +160,7 @@ export const NewRoom: React.FC<NewRoomProps> = ({}) => {
                                         fontWeight: "600",
                                         fontFamily: "KG",
                                         letterSpacing: "0.6vw",
+                                        margin: 0,
                                     }}
                                 >
                                     Insira uma senha
@@ -172,11 +175,11 @@ export const NewRoom: React.FC<NewRoomProps> = ({}) => {
                                 />
                             </Box>
                         )}
-                        <ButtonStop sx={{ bgcolor: colors.buttonSave, fontSize: "7vw", borderRadius: "5vw" }} type="submit">
+                        <ButtonStop sx={{ bgcolor: colors.buttonSave, fontSize: "8vw", borderRadius: "5vw" }} type="submit">
                             Criar
                         </ButtonStop>
                         <ButtonStop
-                            sx={{ bgcolor: colors.buttonSave, fontSize: "5vw", borderRadius: "5vw", p: "0 1vw" }}
+                            sx={{ bgcolor: colors.buttonSave, fontSize: "7vw", borderRadius: "5vw", p: "0 4vw" }}
                             onClick={() => {
                                 navigate("/hall")
                             }}
