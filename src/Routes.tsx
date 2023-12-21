@@ -14,7 +14,7 @@ export const Routes: React.FC<RoutesProps> = ({}) => {
         <Box sx={{ display: "flex", width: "100%", p: "4vw", height: "100%", alignSelf: "center" }}>
             <ReacRoutes>
                 <Route index element={<Home />} />
-                <Route path="/*" element={<Home />} />
+                <Route path="/*" element={<Hall />} />
                 <Route path="/hall" element={<Hall />} />
                 <Route path="/new" element={<NewRoom />} />
                 <Route path="/rooms" element={<RoomList />} />

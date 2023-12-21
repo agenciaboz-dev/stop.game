@@ -4,7 +4,7 @@ import { colors } from "./colors"
 export const input_outlined: any = {
     "& .MuiInputLabel-root": {
         color: "#000",
-        fontSize: "3.2vw",
+        fontSize: "3.8vw",
         fontFamily: "KG",
         letterSpacing: "0.5vw",
 

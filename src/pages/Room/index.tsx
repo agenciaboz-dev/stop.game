@@ -6,6 +6,7 @@ import { Round } from "./Round"
 import { Home } from "../Home"
 import { Avaliate } from "./Round/Avaliate"
 import { Ranking } from "./Round/Ranking"
+import { Settings } from "./Settings"
 
 interface RoomProps {}
 
@@ -17,6 +18,7 @@ export const Room: React.FC<RoomProps> = ({}) => {
                 <Route path="/:roomid/round" element={<Round />} />
                 <Route path="/:roomid/round/avaliate" element={<Avaliate />} />
                 <Route path="/:roomid/ranking" element={<Ranking />} />
+                <Route path="/:roomid/settings" element={<Settings />} />
             </ReacRoutes>
         </Box>
     )

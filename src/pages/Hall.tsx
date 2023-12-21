@@ -52,7 +52,7 @@ export const Hall: React.FC<HallProps> = ({}) => {
                         <Avatar src={imageSort} sx={{ width: "40vw", height: "40vw" }} />
                     </Box>
                 </Box>
-                <InputStop label="Digite seu nome aqui" name="nickname" sx={{ ...input_outlined, width: "80%" }} />
+                <InputStop label="Digite seu nome aqui" name="nickname" sx={{ ...input_outlined, width: "100%" }} />
             </Box>
             <Box sx={{ flexDirection: "column", width: "100%", alignItems: "center", gap: "2vw" }}>
                 <ButtonStop sx={{ ...buttons_hall, bgcolor: colors.button2 }} onClick={() => navigate("/random")}>
