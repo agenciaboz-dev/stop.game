@@ -11,6 +11,8 @@ import { useMantineTheme } from "./hooks/useMantineTheme"
 import "@mantine/core/styles.css"
 import { MenuCategoriesProvider } from "./contexts/menuCategoriesContext"
 import { MenuPlayersProvider } from "./contexts/menuPlayersContext"
+import { HostProvider } from "./contexts/hostContext"
+import { RoomProvider } from "./contexts/roomContext"
 
 interface ProvidersProps {
     children?: React.ReactNode
@@ -23,21 +25,25 @@ export const Providers: React.FC<ProvidersProps> = ({ children }) => {
     return (
         <BrowserRouter>
             <IoProvider>
-                <AvatarProvider>
-                    <ThemeProvider theme={mui_theme}>
-                        <MenuPlayersProvider>
-                            <MenuCategoriesProvider>
-                                <SnackbarProvider>
-                                    <ConfirmDialogProvider>
-                                        <IoProvider>
-                                            <MantineProvider theme={mantine_theme}>{children}</MantineProvider>
-                                        </IoProvider>
-                                    </ConfirmDialogProvider>
-                                </SnackbarProvider>
-                            </MenuCategoriesProvider>
-                        </MenuPlayersProvider>
-                    </ThemeProvider>
-                </AvatarProvider>
+                <HostProvider>
+                    <RoomProvider>
+                        <AvatarProvider>
+                            <ThemeProvider theme={mui_theme}>
+                                <MenuPlayersProvider>
+                                    <MenuCategoriesProvider>
+                                        <SnackbarProvider>
+                                            <ConfirmDialogProvider>
+                                                <IoProvider>
+                                                    <MantineProvider theme={mantine_theme}>{children}</MantineProvider>
+                                                </IoProvider>
+                                            </ConfirmDialogProvider>
+                                        </SnackbarProvider>
+                                    </MenuCategoriesProvider>
+                                </MenuPlayersProvider>
+                            </ThemeProvider>
+                        </AvatarProvider>
+                    </RoomProvider>
+                </HostProvider>
             </IoProvider>
         </BrowserRouter>
     )

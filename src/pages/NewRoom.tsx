@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import { Box } from "@mui/material"
+import { Box, CircularProgress } from "@mui/material"
 import { InputStop } from "../components/InputStop"
 import { colors } from "../style/colors"
 import { input } from "../style/input"
@@ -12,18 +12,25 @@ import { useNavigate } from "react-router-dom"
 import { useFormik } from "formik"
 import { Room } from "../definitions/Room"
 import { CreateRoom } from "../definitions/NewRoom"
+import { useHost } from "../hooks/useHost"
+import { useIo } from "../hooks/useIo"
+import { useRoom } from "../hooks/useRoom"
 
 interface NewRoomProps {}
 
 export const NewRoom: React.FC<NewRoomProps> = ({}) => {
     const navigate = useNavigate()
+    const { host, setHost } = useHost()
+    const { room, setRoom } = useRoom()
+    const io = useIo()
 
     const [privacy, setPrivacy] = useState("Pública")
+    const [loading, setLoading] = useState(false)
 
     const formik = useFormik<CreateRoom>({
         initialValues: {
             name: "",
-            host: "",
+            // host: host,
             password: "",
         },
         onSubmit: (values: CreateRoom) => {
@@ -32,10 +39,24 @@ export const NewRoom: React.FC<NewRoomProps> = ({}) => {
         },
     })
     const handleNewRoom = (values: CreateRoom) => {
-        navigate(`/room/${1}`)
-
-        console.log(values)
+        if (host) {
+            io.emit("room:new", values, host)
+            setLoading(true)
+        }
     }
+
+    useEffect(() => {
+        io.on("room:new:success", (newRoom: Room) => {
+            setRoom({ newRoom })
+            console.log("aqui", { room })
+            setLoading(false)
+            navigate(`/room/${{ newRoom }}`)
+        })
+
+        return () => {
+            io.off("room:new:success")
+        }
+    })
 
     useEffect(() => {
         console.log(privacy)
@@ -176,7 +197,7 @@ export const NewRoom: React.FC<NewRoomProps> = ({}) => {
                             </Box>
                         )}
                         <ButtonStop sx={{ bgcolor: colors.buttonSave, fontSize: "8vw", borderRadius: "5vw" }} type="submit">
-                            Criar
+                            {loading ? <CircularProgress sx={{ color: "#fff", width: "2vw", height: "3vw" }} /> : "Criar"}
                         </ButtonStop>
                         <ButtonStop
                             sx={{ bgcolor: colors.buttonSave, fontSize: "7vw", borderRadius: "5vw", p: "0 4vw" }}
