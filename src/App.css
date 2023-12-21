@@ -16,6 +16,9 @@
     font-family: "KG", sans-serif;
     /* user-select: none; */
 }
+p{
+    margin:0
+}
 
 form {
     display: contents;

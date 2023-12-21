@@ -7,10 +7,12 @@ import { button_style } from "../../style/button"
 import ContentCopyIcon from "@mui/icons-material/ContentCopy"
 import logo from "../../assets/logo/logo.png"
 import { useNavigate } from "react-router-dom"
+import { useMenuDrawerCategories } from "../../hooks/useMenuCategories"
 interface HallRoomProps {}
 
 export const HallRoom: React.FC<HallRoomProps> = ({}) => {
     const navigate = useNavigate()
+    const menu = useMenuDrawerCategories()
 
     const button_hall = {
         bgcolor: colors.button,
@@ -63,15 +65,15 @@ export const HallRoom: React.FC<HallRoomProps> = ({}) => {
                 <ButtonStop sx={{ ...button_style, ...button_hall }} onClick={() => navigate("/room/1/round")}>
                     Iniciar
                 </ButtonStop>
-                <ButtonStop sx={{ ...button_style, ...button_hall }} onClick={() => navigate("/")}>
+                <ButtonStop sx={{ ...button_style, ...button_hall }} onClick={() => menu.toggle()}>
                     Categorias
                 </ButtonStop>
-                <ButtonStop sx={{ ...button_style, ...button_hall }} onClick={() => navigate("/")}>
+                <ButtonStop sx={{ ...button_style, ...button_hall }} onClick={() => navigate(`/room/${1}/settings`)}>
                     Configurações
                 </ButtonStop>
                 <ButtonStop
                     sx={{ ...button_style, ...button_hall, bgcolor: colors.secondary, color: "#fff" }}
-                    onClick={() => navigate("/")}
+                    onClick={() => navigate("/rooms")}
                 >
                     Sair
                 </ButtonStop>

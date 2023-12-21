@@ -9,7 +9,6 @@ import { input_outlined } from "../style/input"
 import { useNavigate } from "react-router-dom"
 import logo from "../assets/logo/logo.png"
 
-
 interface HallProps {}
 
 const buttons_hall = {
@@ -40,8 +39,8 @@ export const Hall: React.FC<HallProps> = ({}) => {
                 padding: "6.5vw",
             }}
         >
-            <Box sx={ { flexDirection: "column", gap: "8vw", alignItems: "center" } }>
-            <img src={logo} style={{ width: "50%" }} />
+            <Box sx={{ flexDirection: "column", gap: "8vw", alignItems: "center" }}>
+                <img src={logo} style={{ width: "50%" }} />
                 <Box
                     sx={{
                         background: "linear-gradient(180deg, #25AAE2 0%, #8CC751 52.6%, #F78B29 100%)",
@@ -56,8 +55,12 @@ export const Hall: React.FC<HallProps> = ({}) => {
                 <InputStop label="Digite seu nome aqui" name="nickname" sx={{ ...input_outlined, width: "80%" }} />
             </Box>
             <Box sx={{ flexDirection: "column", width: "100%", alignItems: "center", gap: "2vw" }}>
-                <ButtonStop sx={{ ...buttons_hall, bgcolor: colors.button2 }}>Sala Aleatória</ButtonStop>
-                <ButtonStop sx={{ ...buttons_hall, bgcolor: colors.primary }}>Salas</ButtonStop>
+                <ButtonStop sx={{ ...buttons_hall, bgcolor: colors.button2 }} onClick={() => navigate("/random")}>
+                    Sala Aleatória
+                </ButtonStop>
+                <ButtonStop sx={{ ...buttons_hall, bgcolor: colors.primary }} onClick={() => navigate("/rooms")}>
+                    Salas
+                </ButtonStop>
                 <ButtonStop sx={{ ...buttons_hall, bgcolor: colors.secondary }} onClick={() => navigate("/new")}>
                     Criar Sala
                 </ButtonStop>

@@ -18,6 +18,7 @@ export const Routes: React.FC<RoutesProps> = ({}) => {
                 <Route path="/hall" element={<Hall />} />
                 <Route path="/new" element={<NewRoom />} />
                 <Route path="/rooms" element={<RoomList />} />
+                <Route path="/random" element={<RoomList />} />
                 <Route path="/room/*" element={<Room />} />
             </ReacRoutes>
         </Box>
