@@ -39,7 +39,7 @@ export const HallRoom: React.FC<HallRoomProps> = ({}) => {
 
     console.log(player?.id)
     const handleLeave = () => {
-        io.emit("room:leave", room?.id, player?.id)
+        io.emit("room:leave", room?.host.id, player?.id)
         console.log("Lista antes:", list)
     }
 
