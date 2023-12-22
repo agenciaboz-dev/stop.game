@@ -13,6 +13,7 @@ import { Player, PlayerForm } from "../definitions/Player"
 import { useFormik } from "formik"
 import { useIo } from "../hooks/useIo"
 import { useHost } from "../hooks/useHost"
+import { usePlayer } from "../hooks/usePlayer"
 
 interface HallProps {}
 
@@ -28,7 +29,7 @@ export const Hall: React.FC<HallProps> = ({}) => {
 
     const [loading, setLoading] = useState(false)
     // const [player, setPlayer] = useState<Player>()
-    const { host, setHost } = useHost()
+    const { player, setPlayer } = usePlayer()
 
     const images = avatar_list
     const randomAvatar = (max: number) => {
@@ -39,8 +40,8 @@ export const Hall: React.FC<HallProps> = ({}) => {
 
     const formik = useFormik<PlayerForm>({
         initialValues: {
-            name: "",
-            icon: "",
+            name: player?.name || "",
+            icon: player?.icon || "",
         },
         onSubmit: (values) => {
             handleSaveName(values)
@@ -55,8 +56,7 @@ export const Hall: React.FC<HallProps> = ({}) => {
 
     useEffect(() => {
         io.on("player:new:success", (data: Player) => {
-            setHost(data)
-            console.log(host)
+            setPlayer(data)
             setLoading(false)
         })
 
@@ -106,6 +106,7 @@ export const Hall: React.FC<HallProps> = ({}) => {
                             sx={{ ...input_outlined, width: "50%" }}
                             value={formik.values.name}
                             onChange={formik.handleChange}
+                            required
                         />
                         <IconButton type="submit">
                             <RiEdit2Fill color="black" style={{ width: "8vw", height: "100%" }} />
@@ -118,6 +119,7 @@ export const Hall: React.FC<HallProps> = ({}) => {
                     sx={{ ...buttons_hall, bgcolor: colors.button2 }}
                     type="submit"
                     onClick={() => navigate("/random")}
+                    disabled={player ? false : true}
                 >
                     Sala Aleatória
                 </ButtonStop>
@@ -125,13 +127,17 @@ export const Hall: React.FC<HallProps> = ({}) => {
                     sx={{ ...buttons_hall, bgcolor: colors.primary }}
                     type="submit"
                     onClick={() => navigate("/rooms")}
+                    disabled={player ? false : true}
                 >
                     Salas
                 </ButtonStop>
                 <ButtonStop
                     type="submit"
                     sx={{ ...buttons_hall, bgcolor: colors.secondary }}
-                    onClick={() => navigate(`/new`)}
+                    onClick={() => {
+                        navigate(`/new`)
+                    }}
+                    disabled={player ? false : true}
                 >
                     {loading ? <CircularProgress sx={{ color: "#fff" }} /> : "Criar Sala"}
                 </ButtonStop>

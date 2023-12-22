@@ -1,7 +1,7 @@
 import { createContext, useState } from "react"
 import React from "react"
+import { Room } from "../definitions/Room"
 
-export interface Room {}
 
 interface RoomContextValue {
     room: Room | null | undefined

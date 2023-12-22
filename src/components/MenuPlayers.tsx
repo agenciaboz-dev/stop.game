@@ -7,16 +7,35 @@ import { useNavigate } from "react-router-dom"
 import { IoMdClose } from "react-icons/io"
 import { avatar_list } from "../assets/avatar_list"
 import { colors } from "../style/colors"
+import { useIo } from "../hooks/useIo"
+import { useRoom } from "../hooks/useRoom"
 
 interface MenuPlayersProps {}
 
 export const MenuPlayers: React.FC<MenuPlayersProps> = ({}) => {
     const navigationItems = useNavigationList()
     const DrawerItems = navigationItems.players.drawer
+    const io = useIo()
 
     const navigate = useNavigate()
 
     const { open, setOpen } = useMenuDrawerPlayers()
+    const { room, setRoom } = useRoom()
+
+    const handleJoinRoom = (roomId: string) => {}
+
+    useEffect(() => {
+        io.emit("room:players", room?.id)
+    })
+    useEffect(() => {
+        io.on("room:players:success", () => {
+            console.log("entrou")
+            console.log(room?.players)
+        })
+        return () => {
+            io.off("room:players:success")
+        }
+    }, [open])
 
     const iconStyle: SxProps = {
         width: "15vw",
@@ -83,20 +102,6 @@ export const MenuPlayers: React.FC<MenuPlayersProps> = ({}) => {
                             {" "}
                             Jogadores
                         </p>
-                    </Box>
-                    <Box sx={{ alignItems: "center", gap: "3vw", flexDirection: "row", width: "100%", height: "5%" }}>
-                        <Avatar
-                            src={avatar_list[15]}
-                            sx={{ width: "10vw", height: "10vw", alignSelf: "center", bgcolor: colors.button }}
-                        />
-                        <p style={{ fontFamily: "KG", fontSize: "8vw", margin: 0 }}>Ana</p>
-                    </Box>
-                    <Box sx={{ alignItems: "center", gap: "3vw", flexDirection: "row", width: "100%", height: "5%" }}>
-                        <Avatar
-                            src={avatar_list[15]}
-                            sx={{ width: "10vw", height: "10vw", alignSelf: "center", bgcolor: colors.button }}
-                        />
-                        <p style={{ fontFamily: "KG", fontSize: "8vw", margin: 0 }}>Ana</p>
                     </Box>
                     <Box sx={{ alignItems: "center", gap: "3vw", flexDirection: "row", width: "100%", height: "5%" }}>
                         <Avatar

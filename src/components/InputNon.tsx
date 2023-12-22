@@ -1,6 +1,7 @@
 import { Box } from "@mui/material"
 import React from "react"
 import { GiPadlock } from "react-icons/gi"
+import { colors } from "../style/colors"
 
 interface InputNonProps {
     content: string
@@ -32,7 +33,7 @@ export const InputNon: React.FC<InputNonProps> = ({ content, variant }) => {
             >
                 {content}
             </p>
-                {variant && <GiPadlock color={"black"} style={{ width: "7vw" }} />}
+            {variant && <GiPadlock color={"#fff"} style={{ width: "7vw" }} />}
         </Box>
     )
 }

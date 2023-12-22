@@ -8,19 +8,31 @@ import { useArray } from "../hooks/useArray"
 import { useNavigate } from "react-router-dom"
 import { ModalNew } from "../components/ModalNew"
 import { GiPadlock } from "react-icons/gi"
+import { useIo } from "../hooks/useIo"
+import { useRooms } from "../hooks/useRooms"
+import { Player } from "../definitions/Player"
+import { usePlayer } from "../hooks/usePlayer"
 
-interface RoomListProps {}
+interface RoomListProps {
+    player: Player
+}
 
-export const RoomList: React.FC<RoomListProps> = ({}) => {
+export const RoomList: React.FC<RoomListProps> = ({ player }) => {
     const navigate = useNavigate()
+    const { list } = useRooms()
 
+    const [selectedRoomId, setSelectedRoomId] = useState("")
     const [open, setOpen] = useState(false)
+
+    useEffect(() => {
+        console.log(list)
+    }, [list])
 
     return (
         <Box
             sx={{
                 width: "100%",
-                height: "fit-content",
+                height: "90%",
                 justifyContent: "center",
                 alignItems: "center",
                 flexDirection: "column",
@@ -47,19 +59,25 @@ export const RoomList: React.FC<RoomListProps> = ({}) => {
                     overflowY: "auto",
                 }}
             >
-                <ButtonStop sx={{ width: "80%", fontSize: "8vw", gap: "3vw" }} onClick={() => setOpen(true)}>
-                    Studio ABC
-                    <GiPadlock color={"#1B789F"} style={{ width: "6vw" }} />
-                </ButtonStop>
-                <ButtonStop sx={{ width: "80%", fontSize: "8vw", gap: "3vw" }} onClick={() => setOpen(true)}>
-                    Studio ABC
-                    <GiPadlock color={"#1B789F"} style={{ width: "6vw" }} />
-                </ButtonStop>
-                <ButtonStop sx={{ width: "80%", fontSize: "8vw", gap: "3vw" }} onClick={() => setOpen(true)}>
-                    Studio ABC
-                    <GiPadlock color={"#1B789F"} style={{ width: "6vw" }} />
-                </ButtonStop>
-                <ModalNew handleClose={() => setOpen(false)} open={open} />
+                {list?.map((item, index) => (
+                    <Box key={item.id}>
+                        <ButtonStop
+                            key={item.id}
+                            sx={{ width: "100%", fontSize: "8vw", gap: "3vw", textTransform: "uppercase" }}
+                            onClick={() => setSelectedRoomId(item.id)}
+                        >
+                            {item.name}
+                            {item.password !== "" && <GiPadlock color={"#1B789F"} style={{ width: "6vw" }} />}
+                        </ButtonStop>
+
+                        <ModalNew
+                            key={item.id}
+                            handleClose={() => setSelectedRoomId("")}
+                            open={selectedRoomId === item.id}
+                            roomH={item}
+                        />
+                    </Box>
+                ))}
             </Box>
             <ButtonStop sx={{ width: "50%", fontSize: "6vw", bgcolor: colors.button2 }} onClick={() => navigate("/hall")}>
                 Voltar

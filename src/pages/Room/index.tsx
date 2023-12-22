@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect } from "react"
 import { Route, Routes as ReacRoutes } from "react-router-dom"
 import { HallRoom } from "./HallRoom"
 import { Box } from "@mui/material"
@@ -7,10 +7,14 @@ import { Home } from "../Home"
 import { Avaliate } from "./Round/Avaliate"
 import { Ranking } from "./Round/Ranking"
 import { Settings } from "./Settings"
+import { Player } from "../../definitions/Player"
+import { usePlayer } from "../../hooks/usePlayer"
 
 interface RoomProps {}
 
 export const Room: React.FC<RoomProps> = ({}) => {
+    const { player, setPlayer } = usePlayer()
+    console.log("routesRoom", player)
     return (
         <Box sx={{ width: "100%" }}>
             <ReacRoutes>

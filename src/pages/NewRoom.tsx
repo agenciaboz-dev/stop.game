@@ -15,13 +15,16 @@ import { CreateRoom } from "../definitions/NewRoom"
 import { useHost } from "../hooks/useHost"
 import { useIo } from "../hooks/useIo"
 import { useRoom } from "../hooks/useRoom"
+import { Player } from "../definitions/Player"
+import { usePlayer } from "../hooks/usePlayer"
 
 interface NewRoomProps {}
 
 export const NewRoom: React.FC<NewRoomProps> = ({}) => {
     const navigate = useNavigate()
     const { host, setHost } = useHost()
-    const { room, setRoom } = useRoom()
+    const { player } = usePlayer()
+    const { setRoom } = useRoom()
     const io = useIo()
 
     const [privacy, setPrivacy] = useState("Pública")
@@ -30,12 +33,13 @@ export const NewRoom: React.FC<NewRoomProps> = ({}) => {
     const formik = useFormik<CreateRoom>({
         initialValues: {
             name: "",
-            // host: host,
             password: "",
         },
         onSubmit: (values: CreateRoom) => {
             handleNewRoom(values)
             console.log("Forms: ", values)
+            setHost(player)
+            console.log("NewHost: ", host)
         },
     })
     const handleNewRoom = (values: CreateRoom) => {
@@ -47,8 +51,7 @@ export const NewRoom: React.FC<NewRoomProps> = ({}) => {
 
     useEffect(() => {
         io.on("room:new:success", (data) => {
-            const roomData = data.room // Acessando o objeto 'room' dentro do dado recebido
-            console.log(roomData.id)
+            const roomData: Room = data.room // Acessando o objeto 'room' dentro do dado recebido
             setRoom(roomData)
 
             navigate(`/room/${roomData.id}`)

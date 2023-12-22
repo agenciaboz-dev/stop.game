@@ -1,5 +1,5 @@
 import { Box } from "@mui/material"
-import React from "react"
+import React, { useEffect } from "react"
 import { colors } from "../../style/colors"
 import { Header } from "../../components/Header"
 import { ButtonStop } from "../../components/ButtonStop"
@@ -8,11 +8,23 @@ import ContentCopyIcon from "@mui/icons-material/ContentCopy"
 import logo from "../../assets/logo/logo.png"
 import { useNavigate } from "react-router-dom"
 import { useMenuDrawerCategories } from "../../hooks/useMenuCategories"
+import { useRoom } from "../../hooks/useRoom"
+import { useHost } from "../../hooks/useHost"
+import { useClipboard } from "@mantine/hooks"
+import { usePlayer } from "../../hooks/usePlayer"
+import { useRooms } from "../../hooks/useRooms"
 interface HallRoomProps {}
 
 export const HallRoom: React.FC<HallRoomProps> = ({}) => {
     const navigate = useNavigate()
     const menu = useMenuDrawerCategories()
+
+    const { copy, copied } = useClipboard()
+    const { room, setRoom } = useRoom()
+    const { list } = useRooms()
+
+    const { player, setPlayer } = usePlayer()
+    // const { player, setPlayer } = usePlayer()
 
     const button_hall = {
         bgcolor: colors.button,
@@ -20,6 +32,13 @@ export const HallRoom: React.FC<HallRoomProps> = ({}) => {
         width: "70%",
         color: "#000",
     }
+
+    useEffect(() => {
+        if (room) {
+            console.log("Entrei na sala:", room.name)
+        }
+    }, [])
+
     return (
         <Box sx={{ flexDirection: "column", width: "100%", height: "100%", gap: "4vw", p: "2vw" }}>
             <Header color={colors.primary} bgIcon={colors.button} round={false} />
@@ -49,22 +68,47 @@ export const HallRoom: React.FC<HallRoomProps> = ({}) => {
                 >
                     <img src={logo} style={{ width: "30%" }} />
                     <Box sx={{ flexDirection: "column", alignItems: "center" }}>
-                        <p style={{ fontFamily: "KG", fontSize: "8vw", color: "#000", margin: 0 }}>Sala #nomedasala</p>
+                        <p
+                            style={{
+                                fontFamily: "KG",
+                                fontSize: "8vw",
+                                color: "#000",
+                                margin: 0,
+                                textTransform: "uppercase",
+                            }}
+                        >
+                            Sala{" "}
+                            <span style={{ color: colors.primary, fontFamily: "KG", fontSize: "8vw", fontWeight: "" }}>
+                                #{room?.name}
+                            </span>
+                        </p>
                         <p style={{ fontFamily: "KG", fontSize: "6vw", color: "#000", margin: 0 }}>
                             Compartilhe com seus amigos
                         </p>
-                        <Box sx={{ flexDirection: "row", alignItems: "center", color: "#000" }}>
-                            <p style={{ fontFamily: "KG", fontSize: "6vw", color: "#000", margin: "0" }}>#link</p>
-                            <ContentCopyIcon />
+                        <Box sx={{ flexDirection: "row", alignItems: "center", color: "#000", gap: "2vw" }}>
+                            <p
+                                style={{
+                                    fontFamily: "KG",
+                                    fontSize: "6vw",
+                                    color: copied ? "#000" : colors.primary,
+                                    margin: "0",
+                                }}
+                            >
+                                #{room?.id}
+                            </p>
+                            <ContentCopyIcon onClick={() => copy(room?.id)} />
                         </Box>
                     </Box>
 
-                    <p style={{ fontFamily: "KG", fontSize: "7vw", color: "#000", margin: 0 }}>Anfitrião, inicie o jogo!</p>
+                    <p style={{ fontFamily: "KG", fontSize: "7vw", color: "#000", margin: 0, textAlign: "center" }}>
+                        {room?.host.name}, inicie o jogo!
+                    </p>
                 </Box>
-
-                <ButtonStop sx={{ ...button_style, ...button_hall }} onClick={() => navigate("/room/1/round")}>
-                    Iniciar
-                </ButtonStop>
+                {player == room?.host && (
+                    <ButtonStop sx={{ ...button_style, ...button_hall }} onClick={() => navigate("/room/1/round")}>
+                        Iniciar
+                    </ButtonStop>
+                )}
                 <ButtonStop sx={{ ...button_style, ...button_hall }} onClick={() => menu.toggle()}>
                     Categorias
                 </ButtonStop>
