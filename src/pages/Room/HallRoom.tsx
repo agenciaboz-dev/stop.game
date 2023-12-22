@@ -13,18 +13,22 @@ import { useHost } from "../../hooks/useHost"
 import { useClipboard } from "@mantine/hooks"
 import { usePlayer } from "../../hooks/usePlayer"
 import { useRooms } from "../../hooks/useRooms"
+import { useIo } from "../../hooks/useIo"
+import { usePlayers } from "../../hooks/usePlayers"
+import { useSnackbar } from "burgos-snackbar"
+import { Player } from "../../definitions/Player"
 interface HallRoomProps {}
 
 export const HallRoom: React.FC<HallRoomProps> = ({}) => {
+    const io = useIo()
     const navigate = useNavigate()
     const menu = useMenuDrawerCategories()
+    const { snackbar } = useSnackbar()
 
     const { copy, copied } = useClipboard()
     const { room, setRoom } = useRoom()
-    const { list } = useRooms()
-
+    const { list, setList } = usePlayers()
     const { player, setPlayer } = usePlayer()
-    // const { player, setPlayer } = usePlayer()
 
     const button_hall = {
         bgcolor: colors.button,
@@ -33,11 +37,36 @@ export const HallRoom: React.FC<HallRoomProps> = ({}) => {
         color: "#000",
     }
 
+    console.log(player?.id)
+    const handleLeave = () => {
+        io.emit("room:leave", room?.id, player?.id)
+        console.log("Lista antes:", list)
+    }
+
     useEffect(() => {
-        if (room) {
-            console.log("Entrei na sala:", room.name)
+        io.on("room:leave:success", (updatedRoom: Player[]) => {
+            snackbar({ severity: "info", text: "Você saiu da sala" })
+            console.log("Lista Depois:", updatedRoom)
+            navigate("/rooms")
+        })
+        return () => {
+            io.off("room:leave:success")
         }
-    }, [])
+    }, [list])
+
+    useEffect(() => {
+        const handlePlayerLeft = (updatedRoom: Player[]) => {
+            // Atualize o estado com a nova lista de jogadores
+            console.log("os de fé", updatedRoom)
+            setList(updatedRoom)
+        }
+
+        io.on("room:leave:left", handlePlayerLeft)
+
+        return () => {
+            io.off("room:leave:left", handlePlayerLeft)
+        }
+    }, [io])
 
     return (
         <Box sx={{ flexDirection: "column", width: "100%", height: "100%", gap: "4vw", p: "2vw" }}>
@@ -117,7 +146,7 @@ export const HallRoom: React.FC<HallRoomProps> = ({}) => {
                 </ButtonStop>
                 <ButtonStop
                     sx={{ ...button_style, ...button_hall, bgcolor: colors.secondary, color: "#fff" }}
-                    onClick={() => navigate("/rooms")}
+                    onClick={handleLeave}
                 >
                     Sair
                 </ButtonStop>

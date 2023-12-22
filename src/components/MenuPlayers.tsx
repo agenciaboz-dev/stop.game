@@ -10,6 +10,7 @@ import { colors } from "../style/colors"
 import { useIo } from "../hooks/useIo"
 import { useRoom } from "../hooks/useRoom"
 import { usePlayers } from "../hooks/usePlayers"
+import { usePlayer } from "../hooks/usePlayer"
 
 interface MenuPlayersProps {}
 
@@ -22,6 +23,7 @@ export const MenuPlayers: React.FC<MenuPlayersProps> = ({}) => {
 
     const { open, setOpen } = useMenuDrawerPlayers()
     const { list, setList } = usePlayers()
+    const { player } = usePlayer()
     const { room, setRoom } = useRoom()
 
     const handleJoinRoom = (roomId: string) => {}
@@ -39,7 +41,7 @@ export const MenuPlayers: React.FC<MenuPlayersProps> = ({}) => {
         return () => {
             io.off("room:players:success")
         }
-    }, [open, list])
+    }, [room?.players])
 
     const iconStyle: SxProps = {
         width: "15vw",
@@ -141,7 +143,16 @@ export const MenuPlayers: React.FC<MenuPlayersProps> = ({}) => {
                                 src={item.icon}
                                 sx={{ width: "10vw", height: "10vw", alignSelf: "center", bgcolor: "transparent" }}
                             />
-                            <p style={{ fontFamily: "KG", fontSize: "8vw", margin: 0 }}>{item.name}</p>
+                            <p
+                                style={{
+                                    fontFamily: "KG",
+                                    fontSize: "8vw",
+                                    margin: 0,
+                                    color: player?.name == item.name ? "#fff" : "#000",
+                                }}
+                            >
+                                {player?.name == item.name ? `${item.name} (you)` : item.name}
+                            </p>
                         </Box>
                     ))}
                 </Box>
