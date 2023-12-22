@@ -35,7 +35,7 @@ export const NewRoom: React.FC<NewRoomProps> = ({}) => {
         },
         onSubmit: (values: CreateRoom) => {
             handleNewRoom(values)
-            console.log(values)
+            console.log("Forms: ", values)
         },
     })
     const handleNewRoom = (values: CreateRoom) => {
@@ -46,11 +46,12 @@ export const NewRoom: React.FC<NewRoomProps> = ({}) => {
     }
 
     useEffect(() => {
-        io.on("room:new:success", (newRoom: Room) => {
-            setRoom({ newRoom })
-            console.log("aqui", { room })
-            setLoading(false)
-            navigate(`/room/${{ newRoom }}`)
+        io.on("room:new:success", (data) => {
+            const roomData = data.room // Acessando o objeto 'room' dentro do dado recebido
+            console.log(roomData.id)
+            setRoom(roomData)
+
+            navigate(`/room/${roomData.id}`)
         })
 
         return () => {

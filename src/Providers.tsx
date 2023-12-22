@@ -25,8 +25,8 @@ export const Providers: React.FC<ProvidersProps> = ({ children }) => {
     return (
         <BrowserRouter>
             <IoProvider>
-                <HostProvider>
-                    <RoomProvider>
+                <RoomProvider>
+                    <HostProvider>
                         <AvatarProvider>
                             <ThemeProvider theme={mui_theme}>
                                 <MenuPlayersProvider>
@@ -42,8 +42,8 @@ export const Providers: React.FC<ProvidersProps> = ({ children }) => {
                                 </MenuPlayersProvider>
                             </ThemeProvider>
                         </AvatarProvider>
-                    </RoomProvider>
-                </HostProvider>
+                    </HostProvider>
+                </RoomProvider>
             </IoProvider>
         </BrowserRouter>
     )
