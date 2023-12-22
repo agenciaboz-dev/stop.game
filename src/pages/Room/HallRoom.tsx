@@ -58,7 +58,7 @@ export const HallRoom: React.FC<HallRoomProps> = ({}) => {
                     sx={{
                         bgcolor: "#fff",
                         width: "100%",
-                        height: "50%",
+                        height: "60%",
                         borderRadius: "4vw",
                         flexDirection: "column",
                         p: "4vw",

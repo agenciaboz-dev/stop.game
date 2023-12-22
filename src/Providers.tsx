@@ -15,6 +15,7 @@ import { HostProvider } from "./contexts/hostContext"
 import { RoomProvider } from "./contexts/roomContext"
 import { RoomsProvider } from "./contexts/roomsContext"
 import { PlayerProvider } from "./contexts/playerContext"
+import { PlayersProvider } from "./contexts/playersContext"
 
 interface ProvidersProps {
     children?: React.ReactNode
@@ -31,23 +32,25 @@ export const Providers: React.FC<ProvidersProps> = ({ children }) => {
                     <HostProvider>
                         <RoomsProvider>
                             <RoomProvider>
-                                <AvatarProvider>
-                                    <ThemeProvider theme={mui_theme}>
-                                        <MenuPlayersProvider>
-                                            <MenuCategoriesProvider>
-                                                <SnackbarProvider>
-                                                    <ConfirmDialogProvider>
-                                                        <IoProvider>
-                                                            <MantineProvider theme={mantine_theme}>
-                                                                {children}
-                                                            </MantineProvider>
-                                                        </IoProvider>
-                                                    </ConfirmDialogProvider>
-                                                </SnackbarProvider>
-                                            </MenuCategoriesProvider>
-                                        </MenuPlayersProvider>
-                                    </ThemeProvider>
-                                </AvatarProvider>
+                                <PlayersProvider>
+                                    <AvatarProvider>
+                                        <ThemeProvider theme={mui_theme}>
+                                            <MenuPlayersProvider>
+                                                <MenuCategoriesProvider>
+                                                    <SnackbarProvider>
+                                                        <ConfirmDialogProvider>
+                                                            <IoProvider>
+                                                                <MantineProvider theme={mantine_theme}>
+                                                                    {children}
+                                                                </MantineProvider>
+                                                            </IoProvider>
+                                                        </ConfirmDialogProvider>
+                                                    </SnackbarProvider>
+                                                </MenuCategoriesProvider>
+                                            </MenuPlayersProvider>
+                                        </ThemeProvider>
+                                    </AvatarProvider>
+                                </PlayersProvider>
                             </RoomProvider>
                         </RoomsProvider>
                     </HostProvider>

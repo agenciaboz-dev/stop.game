@@ -41,7 +41,7 @@ export const Hall: React.FC<HallProps> = ({}) => {
     const formik = useFormik<PlayerForm>({
         initialValues: {
             name: player?.name || "",
-            icon: player?.icon || "",
+            icon: player?.icon || imageSort,
         },
         onSubmit: (values) => {
             handleSaveName(values)
@@ -87,7 +87,7 @@ export const Hall: React.FC<HallProps> = ({}) => {
                         }}
                     >
                         <Box sx={{ bgcolor: "#fff", p: "0vw", borderRadius: "50%" }}>
-                            <Avatar src={imageSort} sx={{ width: "40vw", height: "40vw" }} />
+                            <Avatar src={formik.values.icon} sx={{ width: "40vw", height: "40vw" }} />
                         </Box>
                     </Box>
                     <Box

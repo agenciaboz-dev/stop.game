@@ -9,33 +9,37 @@ import { avatar_list } from "../assets/avatar_list"
 import { colors } from "../style/colors"
 import { useIo } from "../hooks/useIo"
 import { useRoom } from "../hooks/useRoom"
+import { usePlayers } from "../hooks/usePlayers"
 
 interface MenuPlayersProps {}
 
 export const MenuPlayers: React.FC<MenuPlayersProps> = ({}) => {
     const navigationItems = useNavigationList()
     const DrawerItems = navigationItems.players.drawer
-    const io = useIo()
 
     const navigate = useNavigate()
+    const io = useIo()
 
     const { open, setOpen } = useMenuDrawerPlayers()
+    const { list, setList } = usePlayers()
     const { room, setRoom } = useRoom()
 
     const handleJoinRoom = (roomId: string) => {}
-
     useEffect(() => {
         io.emit("room:players", room?.id)
-    })
+    }, [open])
+
     useEffect(() => {
-        io.on("room:players:success", () => {
+        io.on("room:players:success", (room) => {
             console.log("entrou")
             console.log(room?.players)
+            setList(room?.players)
+            console.log("listaaaaaa", list)
         })
         return () => {
             io.off("room:players:success")
         }
-    }, [open])
+    }, [open, list])
 
     const iconStyle: SxProps = {
         width: "15vw",
@@ -70,11 +74,11 @@ export const MenuPlayers: React.FC<MenuPlayersProps> = ({}) => {
             onClose={handleClose}
             PaperProps={{
                 sx: {
-                    padding: "6vw 3vw",
+                    padding: "6vw 3vw 0vw",
                     width: "60vw",
                     height: "100%",
-                    borderTopLeftRadius: "10vw",
-                    borderBottomLeftRadius: "10vw",
+                    borderTopLeftRadius: "18vw",
+                    borderBottomLeftRadius: "0vw",
                     overflowX: "hidden",
                     backgroundColor: colors.secondary,
                     justifyContent: "space-between",
@@ -83,51 +87,81 @@ export const MenuPlayers: React.FC<MenuPlayersProps> = ({}) => {
             // ModalProps={{ BackdropProps: { sx: backdropStyle } }}
             keepMounted
         >
-            <Box>
-                <IconButton color="default" sx={{ ...iconButtonStyle, position: "absolute" }} onClick={handleClose}>
-                    <IoMdClose style={iconStyle} />
-                </IconButton>
-                <Box sx={{ width: "100%", padding: "14vw 4vw", flexDirection: "column", gap: "8vw", alignItems: "center" }}>
-                    <Box sx={{ flexDirection: "row", alignItems: "center", width: "100%" }}>
-                        <p
-                            style={{
-                                fontFamily: "Rubik",
-                                fontSize: "7vw",
-                                margin: 0,
-                                textAlign: "center",
-                                width: "100%",
-                                fontWeight: "800",
-                            }}
-                        >
-                            {" "}
-                            Jogadores
-                        </p>
-                    </Box>
-                    <Box sx={{ alignItems: "center", gap: "3vw", flexDirection: "row", width: "100%", height: "5%" }}>
-                        <Avatar
-                            src={avatar_list[15]}
-                            sx={{ width: "10vw", height: "10vw", alignSelf: "center", bgcolor: colors.button }}
-                        />
-                        <p style={{ fontFamily: "KG", fontSize: "8vw", margin: 0 }}>Ana</p>
-                    </Box>
+            <Box sx={{ height: "100%", flexDirection: "column" }}>
+                <Box
+                    sx={{
+                        width: "100%",
+                        padding: "3vw 1vw",
+                        flexDirection: "row",
+                        gap: "3vw",
+                        alignItems: "center",
+                    }}
+                >
+                    <IconButton color="default" sx={{ ...iconButtonStyle }} onClick={handleClose}>
+                        <IoMdClose style={iconStyle} />
+                    </IconButton>
+                    <p
+                        style={{
+                            fontFamily: "Rubik",
+                            fontSize: "5vw",
+                            margin: 0,
+                            textAlign: "center",
+                            width: "100%",
+                            fontWeight: "800",
+                        }}
+                    >
+                        {" "}
+                        Jogadores
+                    </p>
                 </Box>
-                {/*  */}
-                <Box sx={{ flexDirection: "column", paddingTop: "4vw" }}>
-                    {DrawerItems.map((menu: any) => (
-                        <MenuItem
-                            key={menu.location}
-                            onClick={() => {
-                                handleClose()
-                                navigate(menu.location)
+                <Box
+                    sx={{
+                        flexDirection: "column",
+                        alignItems: "center",
+                        width: "100%",
+                        height: "92%",
+                        overflowY: "auto",
+                        gap: "5vw",
+                        p: "8vw 0",
+                    }}
+                >
+                    {list?.map((item, index) => (
+                        <Box
+                            sx={{
+                                alignItems: "center",
+                                gap: "3vw",
+                                flexDirection: "row",
+                                width: "100%",
+                                height: "5%",
+                                pb: "8vw",
                             }}
-                            sx={menuItemStyle}
+                            key={item.id}
                         >
-                            {menu.icon}
-                            {menu.title}
-                        </MenuItem>
+                            <Avatar
+                                src={item.icon}
+                                sx={{ width: "10vw", height: "10vw", alignSelf: "center", bgcolor: "transparent" }}
+                            />
+                            <p style={{ fontFamily: "KG", fontSize: "8vw", margin: 0 }}>{item.name}</p>
+                        </Box>
                     ))}
                 </Box>
             </Box>
+            {/*  */}
+            {/* <Box sx={{ flexDirection: "column", paddingTop: "4vw" }}>
+                {DrawerItems.map((menu: any) => (
+                    <MenuItem
+                        key={menu.location}
+                        onClick={() => {
+                            handleClose()
+                            navigate(menu.location)
+                        }}
+                        sx={menuItemStyle}
+                    >
+                        {menu.icon}
+                        {menu.title}
+                    </MenuItem>
+                ))}
+            </Box> */}
         </Drawer>
     )
 }
