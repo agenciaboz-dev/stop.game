@@ -133,11 +133,11 @@ export const HallRoom: React.FC<HallRoomProps> = ({}) => {
                         {room?.host.name}, inicie o jogo!
                     </p>
                 </Box>
-                {player == room?.host && (
-                    <ButtonStop sx={{ ...button_style, ...button_hall }} onClick={() => navigate("/room/1/round")}>
-                        Iniciar
-                    </ButtonStop>
-                )}
+                {/* {player == room?.host && ( */}
+                <ButtonStop sx={{ ...button_style, ...button_hall }} onClick={() => navigate("/room/1/round")}>
+                    Iniciar
+                </ButtonStop>
+                {/* )} */}
                 <ButtonStop sx={{ ...button_style, ...button_hall }} onClick={() => menu.toggle()}>
                     Categorias
                 </ButtonStop>
